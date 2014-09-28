@@ -10,12 +10,14 @@
     android:background="#ffffff">
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:id="@+id/ivStatus"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/ivProfileImage"
-        android:paddingRight="5dp"/>
+        android:paddingRight="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_retweet"/>
 
     <ImageView
         android:layout_width="60dp"

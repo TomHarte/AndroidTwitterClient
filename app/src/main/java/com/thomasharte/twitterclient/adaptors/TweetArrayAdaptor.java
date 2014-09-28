@@ -54,11 +54,6 @@ public class TweetArrayAdaptor extends ArrayAdapter<Tweet> {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        // features not yet implemented: tweet status (in the sense of
-        // "is is a retweet?")
-        viewHolder.ivStatus.setVisibility(View.GONE);
-        viewHolder.tvStatus.setVisibility(View.GONE);
-
         // clear any persisting profile image from a previous view use
         viewHolder.ivProfileImage.setImageResource(android.R.color.transparent);
 
@@ -66,6 +61,21 @@ public class TweetArrayAdaptor extends ArrayAdapter<Tweet> {
         Tweet tweet = getItem(position);
         User user = tweet.getUser();
         ImageLoader imageLoader = ImageLoader.getInstance();
+
+        // decide whether this is a retweet
+        Tweet retweetedStatus = tweet.getRetweetedStatus();
+        if(retweetedStatus != null) {
+            viewHolder.ivStatus.setVisibility(View.VISIBLE);
+            viewHolder.tvStatus.setVisibility(View.VISIBLE);
+            viewHolder.tvStatus.setText(user.getName() + " retweeted");
+
+            tweet = retweetedStatus;
+            user = tweet.getUser();
+
+        } else {
+            viewHolder.ivStatus.setVisibility(View.GONE);
+            viewHolder.tvStatus.setVisibility(View.GONE);
+        }
 
         // push fields appropriately
         viewHolder.tvBody.setText(tweet.getBody());
