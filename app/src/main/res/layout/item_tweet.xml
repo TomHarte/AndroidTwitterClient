@@ -36,7 +36,7 @@
         android:layout_toRightOf="@+id/ivStatus"
         android:id="@+id/tvStatusMessage"
         android:textSize="10dp"
-        android:textColor="#ccd6dd"/>
+        android:textColor="#8899a6"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:layout_toLeftOf="@+id/tvPostTime"
         android:layout_alignBaseline="@+id/tvUsername"
         android:paddingLeft="5dp"
-        android:textColor="#ccd6dd"
+        android:textColor="#8899a6"
         android:textSize="10sp"/>
 
     <TextView
@@ -68,7 +68,7 @@
         android:layout_alignTop="@+id/tvUsername"
         android:layout_alignParentRight="true"
         android:paddingLeft="5dp"
-        android:textColor="#ccd6dd"/>
+        android:textColor="#8899a6"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,6 +76,8 @@
         android:text="I am on Twitter, yo."
         android:id="@+id/tvBody"
         android:layout_below="@+id/tvUsername"
-        android:layout_toRightOf="@+id/ivProfileImage"/>
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:autoLink="all"
+        android:linksClickable="true"/>
 
 </RelativeLayout>

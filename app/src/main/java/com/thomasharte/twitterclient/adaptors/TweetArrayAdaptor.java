@@ -1,6 +1,7 @@
 package com.thomasharte.twitterclient.adaptors;
 
 import android.content.Context;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,7 +79,7 @@ public class TweetArrayAdaptor extends ArrayAdapter<Tweet> {
         }
 
         // push fields appropriately
-        viewHolder.tvBody.setText(tweet.getBody());
+        viewHolder.tvBody.setText(Html.fromHtml(tweet.getBody()));
         viewHolder.tvUsername.setText(user.getName());
         viewHolder.tvScreenName.setText("@" + user.getScreenName());
         imageLoader.displayImage(user.getProfileImageUrl(), viewHolder.ivProfileImage);
