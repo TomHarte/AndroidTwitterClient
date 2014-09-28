@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                tools:context="com.thomasharte.twitterclient"
+    android:background="#ffffff">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/ivStatus"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/ivProfileImage"
+        android:paddingRight="5dp"/>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/ivProfileImage"
+        android:paddingRight="5dp"
+        android:layout_below="@+id/ivStatus"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivStatus"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:text="Ted Kennedy retweeted"
+        android:layout_toRightOf="@+id/ivStatus"
+        android:id="@+id/tvStatusMessage"
+        android:textSize="10dp"
+        android:textColor="#ccd6dd"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ed Yong"
+        android:id="@+id/tvUsername"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_alignTop="@+id/ivProfileImage"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ed Yong"
+        android:id="@+id/tvScreenName"
+        android:layout_toRightOf="@+id/tvUsername"
+        android:layout_alignTop="@+id/ivProfileImage"
+        android:layout_toLeftOf="@+id/tvPostTime"
+        android:layout_alignBaseline="@+id/tvUsername"
+        android:paddingLeft="5dp"
+        android:textColor="#ccd6dd"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3m"
+        android:id="@+id/tvPostTime"
+        android:layout_alignTop="@+id/tvUsername"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="5dp"
+        android:textColor="#ccd6dd"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am on Twitter, yo."
+        android:id="@+id/tvBody"
+        android:layout_below="@+id/tvUsername"
+        android:layout_toRightOf="@+id/ivProfileImage"/>
+
+</RelativeLayout>
