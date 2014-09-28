@@ -1,7 +1,6 @@
 package com.thomasharte.twitterclient.adaptors;
 
 import android.content.Context;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,8 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.thomasharte.twitterclient.R;
-import com.thomasharte.twitterclient.models.model.Tweet;
-import com.thomasharte.twitterclient.models.model.User;
+import com.thomasharte.twitterclient.models.Tweet;
+import com.thomasharte.twitterclient.models.User;
 
 import java.util.ArrayList;
 

@@ -2,24 +2,21 @@ package com.thomasharte.twitterclient.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.AndroidCharacter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.thomasharte.twitterclient.ComposeFragment;
+import com.thomasharte.twitterclient.fragments.ComposeFragment;
 import com.thomasharte.twitterclient.R;
 import com.thomasharte.twitterclient.TwitterApp;
 import com.thomasharte.twitterclient.TwitterClient;
 import com.thomasharte.twitterclient.adaptors.TweetArrayAdaptor;
-import com.thomasharte.twitterclient.models.model.Tweet;
+import com.thomasharte.twitterclient.models.Tweet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
