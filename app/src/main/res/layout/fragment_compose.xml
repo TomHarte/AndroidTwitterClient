@@ -14,6 +14,7 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/etBody"
+        android:maxLength="140"
         android:layout_weight="1"/>
 
     <Button
@@ -24,4 +25,14 @@
         android:text="@string/action_send"
         android:id="@+id/btnSend"
         android:layout_gravity=""/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnSend"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/tvCharactersRemaining"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        android:text="140"/>
 </RelativeLayout>

@@ -16,6 +16,7 @@ import com.thomasharte.twitterclient.models.Tweet;
 import com.thomasharte.twitterclient.models.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by thomasharte on 27/09/2014.
@@ -61,6 +62,7 @@ public class TweetArrayAdaptor extends ArrayAdapter<Tweet> {
         // get the tweet, the user and the image uploader
         Tweet tweet = getItem(position);
         User user = tweet.getUser();
+        Date createdAtDate = tweet.getCreatedAt();
         ImageLoader imageLoader = ImageLoader.getInstance();
 
         // decide whether this is a retweet
@@ -87,7 +89,7 @@ public class TweetArrayAdaptor extends ArrayAdapter<Tweet> {
         // figure out the relative time; default to a hard-coded 'now' if the tweet
         // appears to be in the future — that would just imply that the local clock
         // slightly disagrees with the Twitter clock
-        long createdAtTime = tweet.getCreatedAt().getTime();
+        long createdAtTime = createdAtDate.getTime();
         long timeNow = System.currentTimeMillis();
         if(createdAtTime < timeNow) {
             viewHolder.tvPostTime.setText(DateUtils.getRelativeTimeSpanString(tweet.getCreatedAt().getTime(),
