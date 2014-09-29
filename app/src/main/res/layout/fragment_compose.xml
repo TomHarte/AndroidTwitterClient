@@ -15,6 +15,7 @@
         android:ems="10"
         android:id="@+id/etBody"
         android:maxLength="140"
+        android:hint="@string/compose_hint"
         android:layout_weight="1"/>
 
     <Button
