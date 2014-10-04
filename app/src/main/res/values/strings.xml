@@ -10,5 +10,8 @@
     <string name="action_send">Send</string>
     <string name="introduction">This application requires authorisation to send and receive tweets.</string>
     <string name="compose_hint">What\'s happening?</string>
+    <string name="title_activity_timeline_and_mentions">TimelineAndMentionsActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

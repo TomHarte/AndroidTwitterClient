@@ -16,12 +16,15 @@ public class TwitterClient extends OAuthBaseClient {
 	public static final String REST_CONSUMER_SECRET = "xVJOTcOZpCwmbqNE2qEKm7V3et4XgCkrPSuskHcmLVWOw604Hb";
 	public static final String REST_CALLBACK_URL = "oauth://codepath.com";
 
+    public static final String METHOD_HOME_TIMELINE = "home_timeline";
+    public static final String METHOD_MENTIONS_TIMELINE = "mentions_timeline";
+
 	public TwitterClient(Context context) {
 		super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
 	}
 
-    public void getStatusesHomeTimeline(Long oldestId, AsyncHttpResponseHandler handler) {
-		String apiUrl = getApiUrl("statuses/home_timeline.json");
+    public void getStatuses(String method, Long oldestId, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("statuses/" + method + ".json");
 
 		RequestParams params = null;
 

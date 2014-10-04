@@ -26,9 +26,9 @@
 
         <activity
             android:name=".activities.LoginActivity"
-            android:label="@string/app_name"
             android:icon="@drawable/ic_launcher_white"
-            android:noHistory="true">
+            android:label="@string/app_name"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,8 +47,12 @@
         </activity>
         <activity
             android:name=".activities.TimelineActivity"
-            android:label="@string/title_activity_timeline"
-            android:icon="@drawable/ic_launcher_white">
+            android:icon="@drawable/ic_launcher_white"
+            android:label="@string/title_activity_timeline" >
+        </activity>
+        <activity
+            android:name=".activities.TimelineAndMentionsActivity"
+            android:label="@string/title_activity_timeline_and_mentions" >
         </activity>
     </application>
 
