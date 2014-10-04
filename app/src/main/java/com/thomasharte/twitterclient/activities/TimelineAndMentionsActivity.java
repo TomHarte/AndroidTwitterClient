@@ -1,6 +1,7 @@
 package com.thomasharte.twitterclient.activities;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
 import android.view.Menu;
@@ -24,8 +25,10 @@ import android.support.v4.app.FragmentActivity;
 
 public class TimelineAndMentionsActivity extends FragmentActivity implements ComposeFragment.ComposeFragmentListener  {
 
+    private FragmentTabHost tabHost;
     private TwitterClient client;
     private ProgressBar pbLoading;
+    private TimelineFragment timelineFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
         setContentView(R.layout.activity_timeline_and_mentions);
 
         // get the tab host
-        FragmentTabHost tabHost = (FragmentTabHost)findViewById(R.id.tabHost);
+        tabHost = (FragmentTabHost)findViewById(R.id.tabHost);
         tabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
         // add the two tabs we want, referencing the views that include
@@ -88,11 +91,26 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 Tweet newTweet = Tweet.fromJson(jsonObject);
-//                tweets.add(0, newTweet);
-//                tweetsAdaptor.notifyDataSetChanged();
+
+                if(timelineFragment != null)
+                    timelineFragment.insertAtTop(newTweet);
+
                 decrementActivityCounter();
             }
         });
     }
 
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+
+        // attempt to store the new fragment as the timeline fragment;
+        // if it isn't a timeline fragment then store that we have no
+        // current timeline fragment
+        try {
+            timelineFragment = (TimelineFragment)fragment;
+        } catch (ClassCastException e) {
+            timelineFragment = null;
+        }
+    }
 }

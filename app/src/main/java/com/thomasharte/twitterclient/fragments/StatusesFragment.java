@@ -101,4 +101,9 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
             }
         });
     }
+
+    public void insertAtTop(Tweet tweet) {
+        tweets.add(0, tweet);
+        tweetsAdaptor.notifyDataSetChanged();
+    }
 }
