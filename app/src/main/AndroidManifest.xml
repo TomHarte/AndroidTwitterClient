@@ -54,6 +54,10 @@
             android:name=".activities.TimelineAndMentionsActivity"
             android:label="@string/title_activity_timeline_and_mentions" >
         </activity>
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
     </application>
 
 </manifest>

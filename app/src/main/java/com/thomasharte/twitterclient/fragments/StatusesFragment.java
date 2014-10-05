@@ -63,8 +63,12 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
 
     abstract protected void fetchMoreTweets();
 
-    private boolean isFetchingTweets = false;
     protected void fetchMoreTweets(String method) {
+        fetchMoreTweets(method, null);
+    }
+
+    private boolean isFetchingTweets = false;
+    protected void fetchMoreTweets(String method, Long userId) {
         if(isFetchingTweets) return;
         isFetchingTweets = true;
 //        incrementActivityCounter();
@@ -76,7 +80,7 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
 
         Long oldestId = (lastTweet != null) ? lastTweet.getTweetId()-1 : null;
 
-        client.getStatuses(method, oldestId, new JsonHttpResponseHandler() {
+        client.getStatuses(method, oldestId, userId, new JsonHttpResponseHandler() {
             @Override
             public void onFailure(Throwable throwable, String s) {
                 handleFailureMessage(throwable, s);
