@@ -1,6 +1,7 @@
 package com.thomasharte.twitterclient.adaptors;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.thomasharte.twitterclient.R;
+import com.thomasharte.twitterclient.activities.ProfileActivity;
+import com.thomasharte.twitterclient.activities.TimelineAndMentionsActivity;
 import com.thomasharte.twitterclient.models.Tweet;
 import com.thomasharte.twitterclient.models.User;
 
@@ -98,6 +101,18 @@ public class TweetArrayAdaptor extends ArrayAdapter<Tweet> {
         } else {
             viewHolder.tvPostTime.setText("Now");
         }
+
+        // add an on-click listener potentially to launch the profile page
+        final User finalUser = user;
+        viewHolder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = getContext();
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.putExtra(ProfileActivity.EXTRA_USER, finalUser);
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

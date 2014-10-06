@@ -17,6 +17,7 @@ import com.thomasharte.twitterclient.fragments.ComposeFragment;
 import com.thomasharte.twitterclient.fragments.HomeTimelineFragment;
 import com.thomasharte.twitterclient.fragments.MentionsFragment;
 import com.thomasharte.twitterclient.models.Tweet;
+import com.thomasharte.twitterclient.models.User;
 
 import org.json.JSONObject;
 
@@ -54,16 +55,16 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
 
     private int acivityCounter = 0;
     private void incrementActivityCounter() {
-        if(acivityCounter == 0) {
-            pbLoading.setVisibility(View.VISIBLE);
-        }
-        acivityCounter++;
+//        if(acivityCounter == 0) {
+//            pbLoading.setVisibility(View.VISIBLE);
+//        }
+//        acivityCounter++;
     }
     private void decrementActivityCounter() {
-        acivityCounter--;
-        if(acivityCounter == 0) {
-            pbLoading.setVisibility(View.INVISIBLE);
-        }
+//        acivityCounter--;
+//        if(acivityCounter == 0) {
+//            pbLoading.setVisibility(View.INVISIBLE);
+//        }
     }
 
     public void onCompose(MenuItem menuItem) {
@@ -72,9 +73,32 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
     }
 
     public void onShowCurrentUser(MenuItem menuItem) {
-        Intent intent = new Intent(this, ProfileActivity.class);
-//        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+
+        incrementActivityCounter();
+        TwitterApp.getRestClient().verifyCredentials(new JsonHttpResponseHandler() {
+            @Override
+            public void onFailure(Throwable throwable, String s) {
+                handleFailureMessage(throwable, s);
+            }
+
+            @Override
+            protected void handleFailureMessage(Throwable throwable, String s) {
+                Log.d("debug", throwable.toString());
+                Log.d("debug", s);
+                decrementActivityCounter();
+            }
+
+            @Override
+            public void onSuccess(JSONObject jsonObject) {
+                decrementActivityCounter();
+
+                User currentUser = User.fromJson(jsonObject);
+                Intent intent = new Intent(TimelineAndMentionsActivity.this, ProfileActivity.class);
+                intent.putExtra(ProfileActivity.EXTRA_USER, currentUser);
+                startActivity(intent);
+            }
+        });
+
     }
 
         @Override

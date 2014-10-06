@@ -5,10 +5,12 @@ import com.activeandroid.Model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by thomasharte on 27/09/2014.
  */
-public class User extends Model {
+public class User extends Model implements Serializable {
 
     private String name;
     private long userId;

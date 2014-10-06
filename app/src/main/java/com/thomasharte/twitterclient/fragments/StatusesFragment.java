@@ -1,6 +1,5 @@
 package com.thomasharte.twitterclient.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -80,7 +79,7 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
 
         Long oldestId = (lastTweet != null) ? lastTweet.getTweetId()-1 : null;
 
-        client.getStatuses(method, oldestId, userId, new JsonHttpResponseHandler() {
+        client.getStatuses(method, userId, oldestId, new JsonHttpResponseHandler() {
             @Override
             public void onFailure(Throwable throwable, String s) {
                 handleFailureMessage(throwable, s);
