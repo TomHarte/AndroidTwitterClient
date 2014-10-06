@@ -17,16 +17,17 @@
         android:id="@+id/ivProfileImage"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="#808080"/>
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
         android:id="@+id/tvUsername"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/ivProfileImage"
+        android:paddingTop="8dp"
         android:layout_toRightOf="@+id/ivProfileImage"
+        android:paddingLeft="8dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 
@@ -51,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10 following"
+        android:paddingTop="8dp"
         android:id="@+id/tvFollowing"
         android:layout_below="@+id/ivProfileImage"
         android:layout_alignLeft="@+id/centrePoint"/>
@@ -59,12 +61,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="23 followers"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
         android:id="@+id/tvFollowers"
         android:layout_below="@+id/ivProfileImage"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignLeft="@+id/ivProfileImage"/>
 
     <FrameLayout
         android:id="@+id/flContainer"
+        android:paddingTop="4dp"
         android:layout_below="@+id/tvFollowers"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
