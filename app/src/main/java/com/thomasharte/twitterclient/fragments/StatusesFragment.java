@@ -29,6 +29,14 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
     private ListView lvTweets;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // establish storage for tweets
+        tweets = new ArrayList<Tweet>();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timeline, container, false);
@@ -36,8 +44,7 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
         // get views
         lvTweets = (ListView)view.findViewById(R.id.lvTweets);
 
-        // establish the repository for tweets and the adaptor
-        tweets = new ArrayList<Tweet>();
+        // establish the adaptor
         tweetsAdaptor = new TweetArrayAdaptor(container.getContext(), tweets);
         lvTweets.setAdapter(tweetsAdaptor);
 
