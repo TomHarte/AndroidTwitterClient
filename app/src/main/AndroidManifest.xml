@@ -46,15 +46,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.TimelineActivity"
             android:icon="@drawable/ic_launcher_white"
-            android:label="@string/title_activity_timeline" >
-        </activity>
-        <activity
             android:name=".activities.TimelineAndMentionsActivity"
             android:label="@string/title_activity_timeline_and_mentions" >
         </activity>
         <activity
+            android:icon="@drawable/ic_launcher_white"
             android:name=".activities.ProfileActivity"
             android:label="@string/title_activity_profile" >
         </activity>

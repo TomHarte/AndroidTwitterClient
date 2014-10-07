@@ -28,6 +28,8 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
 
     private ListView lvTweets;
 
+    private boolean listIsExhausted = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if(firstVisibleItem + visibleItemCount > totalItemCount - 4) {
+                if(firstVisibleItem + visibleItemCount > totalItemCount - 4 && !listIsExhausted) {
                     fetchMoreTweets();
                 }
             }
@@ -102,7 +104,10 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onSuccess(JSONArray jsonArray) {
-                tweetsAdaptor.addAll(Tweet.fromJsonArray(jsonArray));
+                ArrayList<Tweet> newTweets = Tweet.fromJsonArray(jsonArray);
+                tweetsAdaptor.addAll(newTweets);
+                listIsExhausted = newTweets.size() == 0;
+
                 endLoading();
             }
 
