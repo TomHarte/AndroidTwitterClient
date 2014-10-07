@@ -16,6 +16,7 @@ import com.thomasharte.twitterclient.TwitterApp;
 import com.thomasharte.twitterclient.fragments.ComposeFragment;
 import com.thomasharte.twitterclient.fragments.HomeTimelineFragment;
 import com.thomasharte.twitterclient.fragments.MentionsFragment;
+import com.thomasharte.twitterclient.fragments.StatusesFragment;
 import com.thomasharte.twitterclient.models.Tweet;
 import com.thomasharte.twitterclient.models.User;
 
@@ -23,16 +24,15 @@ import org.json.JSONObject;
 
 import android.support.v4.app.FragmentActivity;
 
-public class TimelineAndMentionsActivity extends FragmentActivity implements ComposeFragment.ComposeFragmentListener  {
+public class TimelineAndMentionsActivity extends ProgressBarActivity implements ComposeFragment.ComposeFragmentListener {
 
     private FragmentTabHost tabHost;
-    private ProgressBar pbLoading;
     private HomeTimelineFragment timelineFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline_and_mentions);
+        super.onCreate(savedInstanceState);
 
         // get the tab host
         tabHost = (FragmentTabHost)findViewById(R.id.tabHost);
@@ -42,8 +42,6 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
         // the appropriate fragments
         tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("Home"), HomeTimelineFragment.class, null);
         tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("Mentions"), MentionsFragment.class, null);
-
-        // get the loading indicator (somehow?)
     }
 
     @Override
@@ -51,20 +49,6 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.timeline_and_mentions, menu);
         return true;
-    }
-
-    private int acivityCounter = 0;
-    private void incrementActivityCounter() {
-//        if(acivityCounter == 0) {
-//            pbLoading.setVisibility(View.VISIBLE);
-//        }
-//        acivityCounter++;
-    }
-    private void decrementActivityCounter() {
-//        acivityCounter--;
-//        if(acivityCounter == 0) {
-//            pbLoading.setVisibility(View.INVISIBLE);
-//        }
     }
 
     public void onCompose(MenuItem menuItem) {
@@ -101,7 +85,7 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
 
     }
 
-        @Override
+    @Override
     public void onPostTweet(String statusMessage) {
         incrementActivityCounter();
 
@@ -133,6 +117,10 @@ public class TimelineAndMentionsActivity extends FragmentActivity implements Com
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
+
+        // add this as the on-loading listener
+        StatusesFragment statusesFragment = (StatusesFragment)fragment;
+        statusesFragment.setOnLoadingListener(this);
 
         // either we now have a timeline fragment or any
         // we had has gone away

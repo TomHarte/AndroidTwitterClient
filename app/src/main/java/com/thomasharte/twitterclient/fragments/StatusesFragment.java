@@ -77,7 +77,8 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
     protected void fetchMoreTweets(String method, Long userId) {
         if(isFetchingTweets) return;
         isFetchingTweets = true;
-//        incrementActivityCounter();
+        if(onLoadingListener != null)
+            onLoadingListener.incrementActivityCounter();
 
         Tweet lastTweet = null;
         int numberOfTweets = tweets.size();
@@ -107,7 +108,8 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
 
             private void endLoading() {
                 isFetchingTweets = false;
-//                decrementActivityCounter();
+                if(onLoadingListener != null)
+                    onLoadingListener.decrementActivityCounter();
             }
         });
     }
@@ -115,5 +117,15 @@ public abstract class StatusesFragment extends android.support.v4.app.Fragment {
     public void insertAtTop(Tweet tweet) {
         tweets.add(0, tweet);
         tweetsAdaptor.notifyDataSetChanged();
+    }
+
+    public interface OnLoadingListener {
+        void incrementActivityCounter();
+        void decrementActivityCounter();
+    }
+
+    private OnLoadingListener onLoadingListener;
+    public void setOnLoadingListener(OnLoadingListener listener) {
+        onLoadingListener = listener;
     }
 }

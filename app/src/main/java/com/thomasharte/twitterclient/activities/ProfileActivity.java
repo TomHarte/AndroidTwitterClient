@@ -1,12 +1,6 @@
 package com.thomasharte.twitterclient.activities;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,14 +9,14 @@ import com.thomasharte.twitterclient.R;
 import com.thomasharte.twitterclient.fragments.UserTimelineFragment;
 import com.thomasharte.twitterclient.models.User;
 
-public class ProfileActivity extends FragmentActivity {
+public class ProfileActivity extends ProgressBarActivity  {
 
     public final static String EXTRA_USER = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        super.onCreate(savedInstanceState);
 
         // get the user whose profile this will be
         Bundle extras = getIntent().getExtras();
